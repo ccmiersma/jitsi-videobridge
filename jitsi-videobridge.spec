@@ -1,6 +1,8 @@
 %define author Christopher Miersma
 ## Tito args --builder=mead --arg "maven_property=assembly.skipAssembly=false"
 
+%define debug_package %{nil}
+
 %{!?local_prefix:%define local_prefix local}
 %if "%{local_prefix}" != "false"
 %define _prefix /opt/%{local_prefix}
