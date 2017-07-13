@@ -43,6 +43,10 @@ of Jitsi Meet
 
 %build
 
+mvn package -D assembly.skipAssembly=false -D skipTests
+
+mkdir extracted-files
+unzip target/jitsi-videobridge-linux-x64*.zip -d extracted-files
 
 %install
 
@@ -66,6 +70,7 @@ mkdir -p %buildroot%_prefix/webapps
 mkdir -p %buildroot%_prefix/lib64
 #end raw
 
+mv extracted-files/* %buildroot%_prefix/app/jitsi-videobridge
 
 
 #raw
@@ -103,9 +108,6 @@ cat %{name}-defined-files-list %{name}-auto-files-list > %{name}-files-list
 
 
 %changelog
-* Wed Jul 12 2017 Christopher Miersma <ccmiersma@gmail.com> 1.0.968-1.local
-- new package built with tito
-
 
 
 
