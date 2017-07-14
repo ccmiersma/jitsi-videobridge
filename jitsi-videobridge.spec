@@ -26,7 +26,7 @@ Group:		local
 License:	Apache
 URL:		https://gitlab.com/ccmiersma/%{name}/
 Source0:        %{name}-%{version}.tar.gz
-BuildArch:      noarch
+BuildArch:      x86_64
 BuildRequires:  pandoc
 
 
@@ -62,19 +62,26 @@ mkdir -p %buildroot%_sbindir
 mkdir -p %buildroot%_libdir/scripts
 mkdir -p %buildroot%_libexecdir 
 mkdir -p %buildroot%_includedir 
-mkdir -p %buildroot/etc/profile.d/ 
-mkdir -p %buildroot%_sysconfdir/
+mkdir -p %buildroot%_sysconfdir/jitsi-videobridge
 mkdir -p %buildroot/var/opt/%{local_prefix}
 
 mkdir -p %buildroot%_mandir/man7
 mkdir -p %buildroot%_prefix/app
 mkdir -p %buildroot%_prefix/webapps
 mkdir -p %buildroot%_prefix/lib64
+
+
+mkdir -p %buildroot/etc/systemd/system 
+mkdir -p %buildroot/etc/sysconfig/local
 #end raw
 
 mv extracted-files/* %buildroot%_prefix/app/jitsi-videobridge
-
-
+cp local/jitsi-videobridge.service %buildroot/etc/systemd/system/
+cp local/jitsi-videobridge %buildroot/etc/sysconfig/local/
+mv %buildroot%_prefix/app/jitsi-videobridge/lib/logging.properties %buildroot%_sysconfdir/jitsi-videobridge/logging.properties
+mv %buildroot%_prefix/app/jitsi-videobridge/lib/videobridge.rc %buildroot%_sysconfdir/jitsi-videobridge/videobridge.rc
+ln -s -T %_sysconfdir/jitsi-videobridge/logging.properties %buildroot%_prefix/app/jitsi-videobridge/lib/logging.properties
+ln -s -T %_sysconfdir/jitsi-videobridge/videobridge.rc %buildroot%_prefix/app/jitsi-videobridge/lib/videobridge.rc
 #raw
 
 
