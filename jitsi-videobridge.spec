@@ -96,6 +96,7 @@ cat > %{name}-defined-files-list << EOF
 %config %_sysconfdir/jitsi-videobridge/videobridge.rc 
 %config %_sysconfdir/jitsi-videobridge/logging.properties
 EOF
+
 ##Convoluted stuff to combine the manual list above with any new files we find, into a correct list with no duplicates
 find %buildroot -type f -o -type l | sed -e "s#${RPM_BUILD_ROOT}##g"|sed -e "s#\(.*\)#\"\1\"#" > %{name}-all-files-list
 cat %{name}-defined-files-list | cut -f2 -d' ' | sed -e "s#\(.*\)#\"\1\"#" | sort > %{name}-defined-files-list.tmp
