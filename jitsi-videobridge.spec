@@ -77,7 +77,7 @@ mkdir -p %buildroot/etc/sysconfig/local
 
 mv extracted-files/* %buildroot%_prefix/app/jitsi-videobridge
 cp local/jitsi-videobridge.service %buildroot/etc/systemd/system/
-cp local/jitsi-videobridge %buildroot/etc/sysconfig/local/
+cp local/env.conf %buildroot%_sysconfdir/jitsi-videobridge/env.conf
 mv %buildroot%_prefix/app/jitsi-videobridge/lib/logging.properties %buildroot%_sysconfdir/jitsi-videobridge/logging.properties
 mv %buildroot%_prefix/app/jitsi-videobridge/lib/videobridge.rc %buildroot%_sysconfdir/jitsi-videobridge/videobridge.rc
 ln -s -T %_sysconfdir/jitsi-videobridge/logging.properties %buildroot%_prefix/app/jitsi-videobridge/lib/logging.properties
@@ -92,6 +92,9 @@ ln -s -T %_sysconfdir/jitsi-videobridge/videobridge.rc %buildroot%_prefix/app/ji
 cat > %{name}-defined-files-list << EOF
 %docdir %{_mandir}
 %docdir %{_docdir}
+%config %_sysconfdir/jitsi-videobridge/env.conf
+%config %_sysconfdir/jitsi-videobridge/videobridge.rc 
+%config %_sysconfdir/jitsi-videobridge/logging.properties
 EOF
 ##Convoluted stuff to combine the manual list above with any new files we find, into a correct list with no duplicates
 find %buildroot -type f -o -type l | sed -e "s#${RPM_BUILD_ROOT}##g"|sed -e "s#\(.*\)#\"\1\"#" > %{name}-all-files-list
