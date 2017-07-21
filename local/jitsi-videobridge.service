@@ -1,0 +1,12 @@
+[Unit]
+Description=Jitsi Videobridge
+Requires=network.target
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/opt/local/jitsi-videobridge/env.conf
+ExecStart=/opt/local/app/jitsi-videobridge/jvb.sh --secret=SECRET --domain=DOMAIN --host=HOST
+
+
+[Install]
+WantedBy=multi-user.target
