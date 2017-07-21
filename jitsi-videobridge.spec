@@ -34,7 +34,7 @@ BuildRequires:  pandoc
 WebRTC compatible Selective Forwarding Unit (SFU)
 Jitsi Videobridge is a WebRTC compatible Selective Forwarding Unit
 (SFU) for multiuser video communication. It is an essential part
-of Jitsi Meet
+of Jitsi Meet.
 
 
 %prep
@@ -72,7 +72,6 @@ mkdir -p %buildroot%_prefix/lib64
 
 
 mkdir -p %buildroot/etc/systemd/system 
-mkdir -p %buildroot/etc/sysconfig/local
 #end raw
 
 mv extracted-files/* %buildroot%_prefix/app/jitsi-videobridge
