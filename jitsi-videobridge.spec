@@ -52,7 +52,6 @@ unzip target/jitsi-videobridge-linux-x64*.zip -d extracted-files
 
 %install
 
-#raw
 mkdir -p %buildroot%_prefix
 mkdir -p %buildroot%_datadir
 mkdir -p %buildroot%_docdir
@@ -72,7 +71,7 @@ mkdir -p %buildroot%_prefix/lib64
 
 
 mkdir -p %buildroot/etc/systemd/system 
-#end raw
+
 
 mv extracted-files/* %buildroot%_prefix/app/jitsi-videobridge
 cp local/jitsi-videobridge.service %buildroot/etc/systemd/system/
@@ -125,5 +124,3 @@ systemctl daemon-reload
 %changelog
 
 
-
-#end raw
