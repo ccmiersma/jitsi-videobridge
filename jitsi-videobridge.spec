@@ -19,7 +19,7 @@
 
 Name:		jitsi-videobridge
 Version:        1.0.968
-Release:        2
+Release:        2.local
 
 Summary:	Jitsi Videobridge
 Group:		local
