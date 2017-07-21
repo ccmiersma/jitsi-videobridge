@@ -19,7 +19,7 @@
 
 Name:		jitsi-videobridge
 Version:        1.0.968
-Release:        1.local%{?dist}
+Release:        2
 
 Summary:	Jitsi Videobridge
 Group:		local
@@ -77,6 +77,7 @@ mkdir -p %buildroot/etc/systemd/system
 mv extracted-files/* %buildroot%_prefix/app/jitsi-videobridge
 cp local/jitsi-videobridge.service %buildroot/etc/systemd/system/
 cp local/env.conf %buildroot%_sysconfdir/jitsi-videobridge/env.conf
+cp local/jitsi-videobridge.sh %buildroot%_bindir
 mv %buildroot%_prefix/app/jitsi-videobridge/lib/logging.properties %buildroot%_sysconfdir/jitsi-videobridge/logging.properties
 mv %buildroot%_prefix/app/jitsi-videobridge/lib/videobridge.rc %buildroot%_sysconfdir/jitsi-videobridge/videobridge.rc
 ln -s -T %_sysconfdir/jitsi-videobridge/logging.properties %buildroot%_prefix/app/jitsi-videobridge/lib/logging.properties
@@ -115,9 +116,11 @@ cat %{name}-defined-files-list %{name}-auto-files-list > %{name}-files-list
 # The post and postun update the man page database
 %post
 
+systemctl daemon-reload
 
 %postun
 
+systemctl daemon-reload
 
 %changelog
 
